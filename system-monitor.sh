@@ -24,7 +24,7 @@ cpupct=$(bc <<<"scale=2;($cpuload15/$cpucores*100)/1")
 
 if [ "${cpupct::-3}" -gt "$cputhreshold" ]
 then
-  curl -H "$hdr" -d '{"username": "'"$usr"'", "embeds":[{"title": "CPU Alert for '"$SERVER_NAME"' server!", "description": "CPU usage exceeded threshold of '"$cputhreshold"'%, currently at '"${cpupct::-3}"'%"}]}' $WEBHOOK_URL
+  curl -H "$hdr" -d '{"username": "'"$usr"'", "embeds":[{"title": "CPU Alert for '"$SERVER_NAME"' server!", "color": "14431557", "description": "CPU usage exceeded threshold of '"$cputhreshold"'%, currently at '"${cpupct::-3}"'%"}]}' $WEBHOOK_URL
 fi
 
 # Memory usage check
@@ -33,7 +33,7 @@ memusage=$(($freemem / $totalmem))
 
 if [ "$memusage" -gt "$memthreshold" ]
 then
-  curl -H "$hdr" -d '{"username": "'"$usr"'", "embeds":[{"title": "Memory Alert for '"$SERVER_NAME"' server!", "description": "Memory usage exceeded threshold of '"$memthreshold"'%, currently at '"$memusage"'%"}]}' $WEBHOOK_URL
+  curl -H "$hdr" -d '{"username": "'"$usr"'", "embeds":[{"title": "Memory Alert for '"$SERVER_NAME"' server!", "color": "14431557", "description": "Memory usage exceeded threshold of '"$memthreshold"'%, currently at '"$memusage"'%"}]}' $WEBHOOK_URL
 fi
 
 # Disk usage check
@@ -41,6 +41,6 @@ diskusage=$(df --output=pcent / | tr -dc '0-9')
 
 if [ "$diskusage" -gt "$diskthreshold" ]
 then
-  curl -H "$hdr" -d '{"username": "'"$usr"'", "embeds":[{"title": "Memory Alert for '"$SERVER_NAME"' server!", "description": "Disk usage exceeded threshold of '"$diskthreshold"'%, currently at '"$diskusage"'%"}]}' $WEBHOOK_URL
+  curl -H "$hdr" -d '{"username": "'"$usr"'", "embeds":[{"title": "Memory Alert for '"$SERVER_NAME"' server!", "color": "14431557", "description": "Disk usage exceeded threshold of '"$diskthreshold"'%, currently at '"$diskusage"'%"}]}' $WEBHOOK_URL
 fi
 
